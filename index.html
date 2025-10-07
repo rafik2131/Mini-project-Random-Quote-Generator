@@ -3,66 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual Drumset</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Random Quote Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <header class="app-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1><i class="fas fa-quote-left"></i> QuoteGen</h1>
+                </div>
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="#generate" class="nav-link active">Generate</a></li>
+                        <li><a href="#add" class="nav-link">Add Quote</a></li>
+                        <li><a href="#filter" class="nav-link">Filter</a></li>
+                        <li><a href="#stats" class="nav-link">Stats</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
     <div class="container">
-        <h1>Virtual Drumset</h1>
-        <p class="instructions">Click the buttons or press the corresponding keys on your keyboard!</p>
-        
-        <div class="drum-pad">
-            <button class="drum-key" data-key="a" data-sound="boom">
-                <span class="key-letter">A</span>
-                <span class="sound-name">Boom</span>
-            </button>
-            
-            <button class="drum-key" data-key="s" data-sound="clap">
-                <span class="key-letter">S</span>
-                <span class="sound-name">Clap</span>
-            </button>
-            
-            <button class="drum-key" data-key="d" data-sound="hihat">
-                <span class="key-letter">D</span>
-                <span class="sound-name">Hihat</span>
-            </button>
-            
-            <button class="drum-key" data-key="f" data-sound="kick">
-                <span class="key-letter">F</span>
-                <span class="sound-name">Kick</span>
-            </button>
-            
-            <button class="drum-key" data-key="g" data-sound="openhat">
-                <span class="key-letter">G</span>
-                <span class="sound-name">Openhat</span>
-            </button>
-            
-            <button class="drum-key" data-key="h" data-sound="ride">
-                <span class="key-letter">H</span>
-                <span class="sound-name">Ride</span>
-            </button>
-            
-            <button class="drum-key" data-key="j" data-sound="snare">
-                <span class="key-letter">J</span>
-                <span class="sound-name">Snare</span>
-            </button>
-            
-            <button class="drum-key" data-key="k" data-sound="tink">
-                <span class="key-letter">K</span>
-                <span class="sound-name">Tink</span>
-            </button>
-            
-            <button class="drum-key" data-key="l" data-sound="tom">
-                <span class="key-letter">L</span>
-                <span class="sound-name">Tom</span>
-            </button>
-        </div>
-        
-        <div class="keyboard-hint">
-            <p>Keyboard Controls: A S D F G H J K L</p>
-        </div>
+
+        <main>
+            <!-- Quote Display Section -->
+            <section class="quote-section">
+                <div class="quote-card">
+                    <div class="quote-content">
+                        <blockquote id="quote-text">Click "Generate Quote" to get started!</blockquote>
+                        <cite id="quote-author">- Author</cite>
+                    </div>
+                    <div class="quote-actions">
+                        <button id="generate-btn" class="btn btn-primary">
+                            <i class="fas fa-random"></i> Generate Quote
+                        </button>
+                        <button id="like-btn" class="btn btn-like" style="display: none;">
+                            <i class="fas fa-heart"></i> <span id="like-count">0</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quote Statistics -->
+            <section class="stats-section" id="stats-section" style="display: none;">
+                <h3>Quote Statistics</h3>
+                <div class="stats-grid">
+                    <button id="chars-with-spaces" class="btn btn-secondary">
+                        <i class="fas fa-font"></i> Characters (with spaces)
+                    </button>
+                    <button id="chars-without-spaces" class="btn btn-secondary">
+                        <i class="fas fa-text-width"></i> Characters (no spaces)
+                    </button>
+                    <button id="word-count" class="btn btn-secondary">
+                        <i class="fas fa-list"></i> Word Count
+                    </button>
+                </div>
+                <div id="stats-display" class="stats-display"></div>
+            </section>
+
+            <!-- Add New Quote Form -->
+            <section class="add-quote-section">
+                <h3><i class="fas fa-plus-circle"></i> Add New Quote</h3>
+                <form id="add-quote-form" class="form">
+                    <div class="form-group">
+                        <label for="new-quote">Quote</label>
+                        <textarea id="new-quote" placeholder="Enter your quote here..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-author">Author</label>
+                        <input type="text" id="new-author" placeholder="Enter author name..." required>
+                    </div>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-plus"></i> Add Quote
+                    </button>
+                </form>
+            </section>
+
+            <!-- Filter by Author -->
+            <section class="filter-section">
+                <h3><i class="fas fa-filter"></i> Filter by Author</h3>
+                <form id="filter-form" class="form">
+                    <div class="form-group">
+                        <label for="author-filter">Author Name</label>
+                        <input type="text" id="author-filter" placeholder="Enter author name to filter..." required>
+                    </div>
+                    <button type="submit" class="btn btn-info">
+                        <i class="fas fa-search"></i> Filter Quotes
+                    </button>
+                </form>
+                
+                <div id="filtered-quotes" class="filtered-quotes" style="display: none;">
+                    <div class="filtered-quote-card">
+                        <blockquote id="filtered-quote-text"></blockquote>
+                        <cite id="filtered-quote-author"></cite>
+                        <div class="navigation-buttons">
+                            <button id="prev-quote" class="btn btn-secondary">
+                                <i class="fas fa-chevron-left"></i> Previous
+                            </button>
+                            <span id="quote-counter">1 / 1</span>
+                            <button id="next-quote" class="btn btn-secondary">
+                                Next <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+        </footer>
     </div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
