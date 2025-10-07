@@ -55,27 +55,4 @@ cd Mini-project-Random-Quote-Generator
 # Open index.html in your browser
 ```
 
-## Features in Detail
-
-### Quote Generation
-- Pre-loaded with 8 inspiring quotes from famous authors
-- Smart algorithm prevents showing the same quote consecutively
-- Smooth animations and visual feedback
-
-### Quote Management
-- Add unlimited custom quotes with automatic ID assignment
-- Like system with animated heart counter
-- Author-based filtering with navigation controls
-
-### Statistics
-- Character count (including spaces)
-- Character count (excluding spaces)
-- Word count analysis
-
-### User Experience
-- Clean, modern interface with professional styling
-- Fixed header navigation for easy access
-- Responsive design for all screen sizes
-- Smooth scrolling between sections
-- Keyboard shortcuts (Space bar to generate quotes)
 
