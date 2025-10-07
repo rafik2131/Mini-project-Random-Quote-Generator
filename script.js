@@ -162,17 +162,27 @@ class QuoteGenerator {
             return;
         }
         
-        let randomIndex;
-        do {
-            randomIndex = Math.floor(Math.random() * this.quotes.length);
-        } while (randomIndex === this.lastGeneratedIndex && this.quotes.length > 1);
+        const generateBtn = document.getElementById('generate-btn');
+        generateBtn.classList.add('loading');
+        generateBtn.disabled = true;
         
-        this.lastGeneratedIndex = randomIndex;
-        this.currentQuoteIndex = randomIndex;
-        this.currentQuote = this.quotes[randomIndex];
-        
-        this.displayQuote(this.currentQuote);
-        this.showQuoteActions();
+        // Simulate loading for better UX
+        setTimeout(() => {
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * this.quotes.length);
+            } while (randomIndex === this.lastGeneratedIndex && this.quotes.length > 1);
+            
+            this.lastGeneratedIndex = randomIndex;
+            this.currentQuoteIndex = randomIndex;
+            this.currentQuote = this.quotes[randomIndex];
+            
+            this.displayQuote(this.currentQuote);
+            this.showQuoteActions();
+            
+            generateBtn.classList.remove('loading');
+            generateBtn.disabled = false;
+        }, 500);
     }
     
     displayQuote(quote) {
@@ -238,26 +248,36 @@ class QuoteGenerator {
     addNewQuote() {
         const quoteText = document.getElementById('new-quote').value.trim();
         const author = document.getElementById('new-author').value.trim();
+        const submitBtn = document.querySelector('#add-quote-form button[type="submit"]');
         
         if (!quoteText || !author) {
             this.showMessage('Please fill in both quote and author fields!', 'error');
             return;
         }
         
-        const newQuote = {
-            id: this.quotes.length,
-            author: author,
-            quote: quoteText,
-            likes: 0
-        };
+        submitBtn.classList.add('loading');
+        submitBtn.disabled = true;
         
-        this.quotes.push(newQuote);
-        
-        // Clear form
-        document.getElementById('new-quote').value = '';
-        document.getElementById('new-author').value = '';
-        
-        this.showMessage(`Quote by ${author} added successfully!`, 'success');
+        // Simulate processing
+        setTimeout(() => {
+            const newQuote = {
+                id: this.quotes.length,
+                author: author,
+                quote: quoteText,
+                likes: 0
+            };
+            
+            this.quotes.push(newQuote);
+            
+            // Clear form
+            document.getElementById('new-quote').value = '';
+            document.getElementById('new-author').value = '';
+            
+            submitBtn.classList.remove('loading');
+            submitBtn.disabled = false;
+            
+            this.showMessage(`Quote by ${author} added successfully!`, 'success');
+        }, 300);
     }
     
     filterQuotesByAuthor() {

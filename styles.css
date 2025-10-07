@@ -90,6 +90,12 @@ main {
     box-shadow: 0 2px 10px rgba(0,0,0,0.08);
     text-align: center;
     border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.quote-section:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
 }
 
 .quote-card {
@@ -145,11 +151,46 @@ main {
     gap: 6px;
     text-decoration: none;
     font-family: inherit;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn:hover {
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn.loading {
+    pointer-events: none;
+}
+
+.btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    margin: auto;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .btn-primary {
@@ -248,6 +289,12 @@ main {
     padding: 30px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.08);
     border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.add-quote-section:hover,
+.filter-section:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
 }
 
 .add-quote-section h3,
@@ -282,7 +329,8 @@ main {
     border-radius: 6px;
     font-size: 0.9rem;
     font-family: inherit;
-    transition: border-color 0.2s ease;
+    transition: all 0.2s ease;
+    background: #fff;
 }
 
 .form-group input:focus,
@@ -290,6 +338,17 @@ main {
     outline: none;
     border-color: #6c757d;
     box-shadow: 0 0 0 2px rgba(108, 117, 125, 0.1);
+    transform: translateY(-1px);
+}
+
+.form-group input:invalid,
+.form-group textarea:invalid {
+    border-color: #dc3545;
+}
+
+.form-group input:valid,
+.form-group textarea:valid {
+    border-color: #28a745;
 }
 
 .form-group textarea {
@@ -374,11 +433,17 @@ footer i {
     
     .nav-menu ul {
         gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     
     .nav-link {
         padding: 6px 10px;
         font-size: 0.9rem;
+    }
+    
+    .quote-section {
+        padding: 25px;
     }
     
     .quote-content blockquote {
@@ -388,15 +453,51 @@ footer i {
     .quote-actions {
         flex-direction: column;
         align-items: center;
+        gap: 10px;
     }
     
     .stats-grid {
         grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .add-quote-section,
+    .filter-section {
+        padding: 20px;
     }
     
     .navigation-buttons {
         flex-direction: column;
         gap: 10px;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .quote-section {
+        padding: 20px;
+    }
+    
+    .quote-content blockquote {
+        font-size: 1.2rem;
+    }
+    
+    .add-quote-section,
+    .filter-section {
+        padding: 15px;
+    }
+    
+    .btn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
     }
 }
 

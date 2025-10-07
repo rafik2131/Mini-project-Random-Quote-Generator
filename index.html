@@ -38,10 +38,10 @@
                         <cite id="quote-author">- Author</cite>
                     </div>
                     <div class="quote-actions">
-                        <button id="generate-btn" class="btn btn-primary">
+                        <button id="generate-btn" class="btn btn-primary" aria-label="Generate a random quote">
                             <i class="fas fa-random"></i> Generate Quote
                         </button>
-                        <button id="like-btn" class="btn btn-like" style="display: none;">
+                        <button id="like-btn" class="btn btn-like" style="display: none;" aria-label="Like this quote">
                             <i class="fas fa-heart"></i> <span id="like-count">0</span>
                         </button>
                     </div>
@@ -52,13 +52,13 @@
             <section class="stats-section" id="stats-section" style="display: none;">
                 <h3>Quote Statistics</h3>
                 <div class="stats-grid">
-                    <button id="chars-with-spaces" class="btn btn-secondary">
+                    <button id="chars-with-spaces" class="btn btn-secondary" aria-label="Show character count including spaces">
                         <i class="fas fa-font"></i> Characters (with spaces)
                     </button>
-                    <button id="chars-without-spaces" class="btn btn-secondary">
+                    <button id="chars-without-spaces" class="btn btn-secondary" aria-label="Show character count excluding spaces">
                         <i class="fas fa-text-width"></i> Characters (no spaces)
                     </button>
-                    <button id="word-count" class="btn btn-secondary">
+                    <button id="word-count" class="btn btn-secondary" aria-label="Show word count">
                         <i class="fas fa-list"></i> Word Count
                     </button>
                 </div>
